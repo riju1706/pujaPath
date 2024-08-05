@@ -1,0 +1,570 @@
+└── src/
+    ├── closeContext
+    ├── components/
+    │   ├── camera/ 
+    │   │   └── Camera.jsx (This component is used for taking picute from camera)
+    │   ├── editPicDialog/
+    │   │   └── editPicDialog.jsx (This component facilitates opening a dialog box where users can update their profile picture. Utilizing Cloudinary for image storage, it retrieves the image URL after storing it, which is then saved into the JSON server.)
+    │   ├── list/
+    │   │   └── AllPanditComp/
+    │   │       ├── CardPandit/
+    │   │       │   └── CardPnadit.jsx
+    │   │       └── AllPanditContainer.jsx (This component is designed to display all available pandits.)
+    │   ├── UI/
+    │   │   ├── component/
+    │   │   │   ├── PujaSamagriCard/ (This component is designed to display all available puja samagries.)
+    │   │   │   │   └── PujaSamagri.jsx
+    │   │   │   └── vendorCard/
+    │   │   │       └── VendorCard.jsx
+    │   │   ├── course/
+    │   │   │   └── CourseHomeCard.jsx (This component is utilized to showcase courses on the homepage, employing the Material-UI Card component for presentation.)
+    │   │   ├── dashboardAllComp/
+    │   │   │   ├── component/
+    │   │   │   │   ├── Bookedxxxx/
+    │   │   │   │   │   └── Booked.jsx
+    │   │   │   │   ├── BookingCard/
+    │   │   │   │   │   └── BookingCard.jsx ("This component displays the booking details in a card format after the reservation is made. used meterial ui card component")
+    │   │   │   │   ├── CourseCard/
+    │   │   │   │   │   └── courseCard.jsx ("This component displays the course details in a card format after the reservation is made. used meterial ui card component")
+    │   │   │   │   ├── personalInfoCArd/
+    │   │   │   │   │   └── PersonalInfoCard.jsx ("This component displays the personal details in a card format after the reservation is made. used meterial ui card component")
+    │   │   │   │   ├── personalInfoEdit/
+    │   │   │   │   │   └── PersonalInfoEdit.jsx  ("This component allows users to edit their personal information, utilizing Formik for form validation; upon submission, it updates the user's details.")
+    │   │   │   │   ├── profileEdit/
+    │   │   │   │   │   ├── ProfileEditxxxx.jsx 
+    │   │   │   │   │   └── profileEditxxxx.css
+    │   │   │   │   ├── reviewsCard/
+    │   │   │   │   │   └── ReviewsCard.jsx ("This component displays user reviews in a card format.")
+    │   │   │   │   └── DashboardSideBar.jsx ("This sidebar component for the user dashboard utilizes Material-UI's Avatar to display the user profile picture and includes an editable tab, with the tab name being provided through props.")
+    │   │   │   ├── devoreeDashboard/
+    │   │   │   │   ├── component/
+    │   │   │   │   │   ├── DevoBookingHistory/
+    │   │   │   │   │   │   └── DevoBookingHistory.jsx ("This component displays the devotee's past bookings.")
+    │   │   │   │   │   ├── DevoBookings/
+    │   │   │   │   │   │   ├── component/
+    │   │   │   │   │   │   │   ├── DevoteePanditBookingsCard.jsx ("This card displays the pandit’s information along with the booking details.")
+    │   │   │   │   │   │   │   └── DevoteeSamagriBookingsCard.jsx ("This card displays the vendors’s information along with the booking samagries.")
+    │   │   │   │   │   │   └── DevoBookings.jsx
+    │   │   │   │   │   └── DevoPersonalDetails/
+    │   │   │   │   │       └── DevoPersonalDetails.jsx ("This component displays the devotee's personal details in a card format.")
+    │   │   │   │   └── DevoteeDashboard.jsx ("This component serves as the devotee's full dashboard, integrating both the sidebar component and all the tab components.")
+    │   │   │   ├── panditDashboard/
+    │   │   │   │   ├── component/
+    │   │   │   │   │   ├── Booked/
+    │   │   │   │   │   │   ├── component/
+    │   │   │   │   │   │   │   └── CompletedCardxxxx.jsx 
+    │   │   │   │   │   │   └── PanditCompletedPuja.jsx ("This component showcases the completion of a devotee's puja in a card format.")
+    │   │   │   │   │   ├── panditBookings/
+    │   │   │   │   │   │   ├── component/
+    │   │   │   │   │   │   │   └── AcceptedCard.jsx ("This component allows the pandit to mark the puja as completed by clicking a button.")
+    │   │   │   │   │   │   └── PanditBookings.jsx
+    │   │   │   │   │   ├── PanditPersonalDetails/
+    │   │   │   │   │   │   └── PanditPersonalDetails.jsx ("This component is used to display the pandit's personal information in a card format.")
+    │   │   │   │   │   ├── panditPujsList/
+    │   │   │   │   │   │   ├── components/
+    │   │   │   │   │   │   │   ├── dialogStepper/
+    │   │   │   │   │   │   │   │   └── DialogStepper.jsx ("This component, built with Material-UI's Stepper, is used for adding puja-specific samagri items, allowing the pandit to navigate forward and backward through the steps.")
+    │   │   │   │   │   │   │   ├── havanSection/
+    │   │   │   │   │   │   │   │   └── HavanSection.jsx ("This component enables the pandit to add or remove havan details, including samagri items, havan price, and duration. It utilizes the MUI Switch component for toggling options and integrates the EditSamagriDialog component for editing or adding havan samagri.")
+    │   │   │   │   │   │   │   ├── panditSamagriList/
+    │   │   │   │   │   │   │   │   ├── components/
+    │   │   │   │   │   │   │   │   │   ├── CommonPuja.jsx ("This is the comprehensive Samagri component, which displays common samagri items along with their quantities as specified by the pandit. It allows the pandit to edit or add samagri items and adjust quantities.")
+    │   │   │   │   │   │   │   │   │   ├── EditSamagriDialog.jsx ("This dialog box provides functionality for adding or editing samagri items and can be used wherever this feature is needed." )
+    │   │   │   │   │   │   │   │   │   ├── HavanSamagri.jsx ("This component displays the list of havan samagri items as specified by the pandit on their dashboard.")
+    │   │   │   │   │   │   │   │   │   └── PujaWiseSamagri.jsx ("This component displays the list of puja wise samagri items as specified by the pandit on their dashboard. Example - Laxmi puja samagris, Durgapuja Samagries")
+    │   │   │   │   │   │   │   │   └── PanditSamagriList.jsx ("Clicking 'PanditSamagriList' in the sidebar on the pandit’s dashboard will open this component.")
+    │   │   │   │   │   │   │   ├── Steps/
+    │   │   │   │   │   │   │   │   ├── Confirm.jsx ("This component is essential for the stepper component when adding any puja.")
+    │   │   │   │   │   │   │   │   ├── StepOne.jsx ("This component is essential for the stepper component when adding any puja.")
+    │   │   │   │   │   │   │   │   └── StepTwo.jsx ("This component is essential for the stepper component when adding any puja.")
+    │   │   │   │   │   │   │   └── AddEditPuja.jsx ("This dialog box provides functionality for adding or editing pujas and can be used wherever this feature is needed." )
+    │   │   │   │   │   │   └── PanditPujaList.jsx ("This component displays the list of pujas conducted by the pandit.")
+    │   │   │   │   │   ├── personalEdit/
+    │   │   │   │   │   │   ├── Address.jsx ("This component is used to showcase the pandit's address.")
+    │   │   │   │   │   │   └── PersonalEdit.jsx  ("This component is used for editing personal information.")
+    │   │   │   │   │   ├── perfonalHeadEdit/ ("This component is used for showcase the personal Header information.")
+    │   │   │   │   │   │   └── PersonalHeadEdit.jsx ("This component is used for edit the personal Header information.")
+    │   │   │   │   │   └── ReviewsTab/
+    │   │   │   │   │       └── ReviewTab.jsx  ("This component opens whenever the 'Review' tab is clicked from the sidebar on the pandit’s dashboard page.")
+    │   │   │   │   └── PanditDashboard.jsx (("This component serves as the pandit's full dashboard, integrating both the sidebar component and all the tab components."))
+    │   │   │   ├── TraineeDashboard/
+    │   │   │   │   ├── component/
+    │   │   │   │   │   ├── DevoBookingHistory/
+    │   │   │   │   │   │   └── DevoBookingHistory.jsx (("This component displays the devotee's past bookings History")
+    │   │   │   │   │   ├── DevoBookingsxxxx/
+    │   │   │   │   │   │   └── DevoBookings.jsx (("This component displays the devotee's active bookings."))
+    │   │   │   │   │   ├── TraineeCourse/
+    │   │   │   │   │   │   └── TraineeCoursess.jsx  (This component displays all the courses that the trainee has purchased.)
+    │   │   │   │   │   ├── TraineePersonalDetails/ 
+    │   │   │   │   │   │   └── TraineePersonalDetails.jsx (This component displays the trainee's personal details.)
+    │   │   │   │   │   └── TraineeDetails.jsx ((This component displays the trainee's full details.))
+    │   │   │   │   └── TraineeDashboard.jsx  (("This component serves as the trainee's full dashboard, integrating both the sidebar component and all the tab components."))
+    │   │   │   ├── TrainerDashboard/
+    │   │   │   │   ├── component/
+    │   │   │   │   │   ├── DevoBookingHistoryxxxx/
+    │   │   │   │   │   │   └── DevoBookingsHistory.jsx 
+    │   │   │   │   │   ├── DevoBookingsxxxx/
+    │   │   │   │   │   │   └── DevoBookings.jsx
+    │   │   │   │   │   ├── TraineeCourses/
+    │   │   │   │   │   │   ├── component/
+    │   │   │   │   │   │   │   └── AddCourseDialog.jsx
+    │   │   │   │   │   │   └── TrainerCourses.jsx
+    │   │   │   │   │   └── TraineePersonalDetails/ (This component displays the trainee's personal details.)
+    │   │   │   │   │       └── TraineePersonalDetails.jsx (This component displays the trainee's personal details.)
+    │   │   │   │   └── TrainerDashboard.jsx ((("This component serves as the trainer's full dashboard, integrating both the sidebar component and all the tab components.")))
+    │   │   │   └── VendorDashboard/
+    │   │   │       ├── component/
+    │   │   │       │   ├── vendorBookingHistory/
+    │   │   │       │   │   └── VendorBookingHistory.jsx (This component displays all previous Samagri bookings by vendors in a card format.)
+    │   │   │       │   ├── vendorBookings/
+    │   │   │       │   │   ├── component/
+    │   │   │       │   │   │   ├── SamagriTreeView.jsx (This component is used to display Samagri names and quantities in a tree format, and I utilized Material-UI's tree component to create it.)
+    │   │   │       │   │   │   └── VendorBookingsCard.jsx (This card is used on the vendor booking page to display the details of the bookings.)
+    │   │   │       │   │   └── vendorBookings.jsx (This card is used on the vendor booking page to display the list of the bookings.)
+    │   │   │       │   ├── vendorPersonalDetails/
+    │   │   │       │   │   ├── component/
+    │   │   │       │   │   │   └── ShopDetailsCard.jsx (This card is used for displaying detailed information about the booking.)
+    │   │   │       │   │   └── VendorPersonalDetails.jsx (This card is used for displaying detailed information about the personal information.)
+    │   │   │       │   ├── vandorSamagrList (This card is used on the vendor booking page to display the list of the samagries.)
+    │   │   │       │   ├── component
+    │   │   │       │   ├── AddSamagriDialog.jsx 
+    │   │   │       │   ├── VendorSamagriCard.jsx
+    │   │   │       │   └── VendorSamagriList.jsx
+    │   │   │       ├── VendorDashboard.jsx
+    │   │   │       ├── VendorDetails.jsx
+    │   │   │       └── VendorDetailsEdit.jsx
+    │   │   ├── HomeCarousel
+    │   │   ├── registerLogin
+    │   │   └── Spinner
+    │   └── Cloudinay.jsx
+    ├── HomePageComp
+    ├── Hook
+│   └── Layout
+└── pages/
+    ├── aboutUs/
+    │   └── AboutUs.jsx
+    ├── cartPage/
+    │   ├── component/
+    │   │   ├── AddExtraSamagriSideDialog.jsx
+    │   │   ├── CartEditSamagriListDialog.jsx
+    │   │   └── CartVendorSection.jsx
+    │   └── CartPage.jsx
+    ├── checkout/
+    │   ├── components/
+    │   │   ├── Address.jsx
+    │   │   ├── AddressEdit.jsx
+    │   │   ├── CheckOutAccordion.jsx
+    │   │   ├── Offer.jsx
+    │   │   ├── PaymentMethos.jsx
+    │   │   └── ReviewAndDelivery.jsx
+    │   └── Checkout.jsx
+    ├── course/
+    │   └── Course.jsx
+    ├── coursePageDetails/
+    │   └── CoursePageDetails.jsx
+    ├── Dashboard/
+    │   ├── dashboard.css
+    │   └── Dashboard.jsx
+    ├── home/
+    │   ├── components/
+    │   │   ├── DateWisePujaList
+    │   │   ├── LineCourseList
+    │   │   ├── PujaSamagriList
+    │   │   ├── pujaTypeList
+    │   │   ├── PujaSamagriList.jsx
+    │   │   ├── PujaTypeCard.jsx
+    │   │   └── PujaTypeDetails.jsx
+    │   ├── Home.css
+    │   └── Home.jsx
+    ├── learnPage/
+    │   ├── component/
+    │   │   └── LearnSide.jsx
+    │   └── LearnPage.jsx
+    ├── notFound/
+    │   └── NotFound.jsx
+    ├── panditView
+    ├── component/
+    │   ├── PanditViewaa.jsx
+    │   └── SideDrawer.jsx
+    ├── PanditView.jsx
+    ├── pujaDetails/
+    │   └── PujaDetails.jsx
+    ├── Pujaoffering/
+    │   └── PujaOffering.jsx
+    ├── pujaType/
+    │   └── PujaType.jsx
+    ├── searchPandit/
+    │   ├── component/
+    │   │   ├── AllPanditContainer.jsx
+    │   │   └── CardPandit.jsx
+    │   └── SearchPandit.jsx
+    ├── selectVendor/
+    │   ├── component/
+    │   │   ├── selectVendorCard/
+    │   │   │   ├── PriceDetailsDialog.jsx
+    │   │   │   └── SelectVendorCard.jsx
+    │   │   └── selectVendorSidebar/
+    │   │       ├── vendorSidebarItem/
+    │   │       │   └── VendorSidebarItem.jsx
+    │   │       └── SelectVendorSidebar.jsx
+    │   └── SelectVendor.jsx
+    ├── vendoepages
+    ├── aboutUs/
+    │   └── AboutUs.jsx
+    ├── cartPage/
+    │   ├── component/
+    │   │   ├── AddExtraSamagriSideDialog.jsx
+    │   │   ├── CartEditSamagriListDialog.jsx
+    │   │   └── CartVendorSection.jsx
+    │   └── CartPage.jsx
+    ├── checkout/
+    │   ├── components/
+    │   │   ├── Address.jsx
+    │   │   ├── AddressEdit.jsx
+    │   │   ├── CheckOutAccordion.jsx
+    │   │   ├── Offer.jsx
+    │   │   ├── PaymentMethos.jsx
+    │   │   └── ReviewAndDelivery.jsx
+    │   └── Checkout.jsx
+    ├── course/
+    │   └── Course.jsx
+    ├── coursePageDetails/
+    │   └── CoursePageDetails.jsx
+    ├── Dashboard/
+    │   ├── dashboard.css
+    │   └── Dashboard.jsx
+    ├── home/
+    │   ├── components/
+    │   │   ├── DateWisePujaList
+    │   │   ├── LineCourseList
+    │   │   ├── PujaSamagriList
+    │   │   ├── pujaTypeList
+    │   │   ├── PujaSamagriList.jsx
+    │   │   ├── PujaTypeCard.jsx
+    │   │   └── PujaTypeDetails.jsx
+    │   ├── Home.css
+    │   └── Home.jsx
+    ├── learnPage/
+    │   ├── component/
+    │   │   └── LearnSide.jsx
+    │   └── LearnPage.jsx
+    ├── notFound/
+    │   └── NotFound.jsx
+    ├── panditView
+    ├── component/
+    │   ├── PanditViewaa.jsx
+    │   └── SideDrawer.jsx
+    ├── PanditView.jsx
+    ├── pujaDetails/
+    │   └── PujaDetails.jsx
+    ├── Pujaoffering/
+    │   └── PujaOffering.jsx
+    ├── pujaType/
+    │   └── PujaType.jsx
+    ├── searchPandit/
+    │   ├── component/
+    │   │   ├── AllPanditContainer.jsx
+    │   │   └── CardPandit.jsx
+    │   └── SearchPandit.jsx
+    ├── selectVendor/
+    │   ├── component/
+    │   │   ├── selectVendorCard/
+    │   │   │   ├── PriceDetailsDialog.jsx
+    │   │   │   └── SelectVendorCard.jsx
+    │   │   └── selectVendorSidebar/
+    │   │       ├── vendorSidebarItem/
+    │   │       │   └── VendorSidebarItem.jsx
+    │   │       └── SelectVendorSidebar.jsx
+    │   └── SelectVendor.jsx
+    ├── vendoe
+    ├── Redux
+    ├── App.css
+    ├── App.js
+    └── index.js
+
+    
+===============================================================================================
+src
+  closeContext
+  components
+    camera
+      Camera.jsx
+    editPicDialog
+      editPicDialog.jsx
+    list
+      AllPanditComp
+        CardPandit
+          CardPnadit.jsx
+        AllPanditContainer.jsx
+    UI
+      component
+        PujaSamagriCard
+          PujaSamagri.jsx
+        vendorCard
+          VendorCard.jsx
+      course
+        CourseHomeCard.jsx
+      dashboardAllComp
+        component
+          Booked
+            Booked.jsx
+          BookingCard
+            BookingCard.jsx
+          CourseCard
+            courseCard.jsx
+          personalInfoCArd
+            PersonalInfoCard.jsx
+          personalInfoEdit
+            PersonalInfoEdit.jsx
+          profileEdit
+            ProfileEdit.jsx
+            profileEdit.css
+          reviewsCard
+            ReviewsCard.jsx
+          DashboardSideBar.jsx
+        devoreeDashboard
+          component
+            DevoBookingHistory
+              DevoBookingHistory.jsx
+            DevoBookings
+              component
+                DevoteePanditBookingsCard.jsx
+                DevoteeSamagriBookingsCard.jsx
+              DevoBookings.jsx
+            DevoPersonalDetails
+              DevoPersonalDetails.jsx
+          DevoteeDashboard.jsx
+        panditDashboard
+          component
+            Booked
+              component
+                CompletedCard.jsx
+              PanditCompletedPuja.jsx
+            panditBookings
+              component
+                AcceptedCard.jsx
+              PanditBookings.jsx
+            PanditPersonalDetails
+              PanditPersonalDetails.jsx
+            panditPujsList
+              components
+                dialogStepper
+                  DialogStepper.jsx
+                havanSection
+                  HavanSection.jsx
+                panditSamagriList
+                  components
+                    CommonPuja.jsx
+                    EditSamagriDialog.jsx
+                    HavanSamagri.jsx
+                    PujaWiseSamagri.jsx
+                  PanditSamagriList.jsx
+                Steps
+                  Confirm.jsx
+                  StepOne.jsx
+                  StepTwo.jsx
+                AddEditPuja.jsx
+              PanditPujaList.jsx
+            personalEdit
+              Address.jsx
+              PersonalEdit.jsx
+            perfonalHeadEdit
+              PersonalHeadEdit.jsx
+            ReviewsTab
+              ReviewTab.jsx
+          PanditDashboard.jsx
+        TraineeDashboard
+          component
+            DevoBookingHistory
+              DevoBookingHistory.jsx
+            DevoBookings
+              DevoBookings.jsx
+            TraineeCourse
+              TraineeCoursess.jsx
+            TraineePersonalDetails
+              TraineePersonalDetails.jsx
+            TraineeDetails.jsx
+          TraineeDashboard.jsx
+        TrainerDashboard
+          component
+            DevoBookingHistory
+              DevoBookingsHistory.jsx
+            DevoBookings
+              DevoBookings.jsx
+            TraineeCourses
+              component
+                AddCourseDialog.jsx
+              TrainerCourses.jsx
+            TraineePersonalDetails
+              TraineePersonalDetails.jsx
+          TrainerDashboard.jsx
+        VendorDashboard
+          component
+            vendorBookingHistory
+              VendorBookingHistory.jsx
+            vendorBookings
+              component
+                SamagriTreeView.jsx
+                VendorBookingsCard.jsx
+              vendorBookings.jsx
+            vendorPersonalDetails
+              component
+                ShopDetailsCard.jsx
+              VendorPersonalDetails.jsx
+            vandorSamagrList
+            component
+            AddSamagriDialog.jsx
+            VendorSamagriCard.jsx
+            VendorSamagriList.jsx
+          VendorDashboard.jsx
+          BendorDetails.jsx
+          VendorDetailsEdit.jsx
+      HomeCarousel
+      registerLogin
+      Spinner
+    Cloudinay.jsx
+  HomePageComp
+  Hook
+  Layout
+pages
+    aboutUs
+      AboutUs.jsx
+    cartPage
+      component
+        AddExtraSamagriSideDialog.jsx
+        CartEditSamagriListDialog.jsx
+        CartVendorSection.jsx
+      CartPage.jsx
+    checkout
+      components
+        Address.jsx
+        AddressEdit.jsx
+        CheckOutAccordion.jsx
+        Offer.jsx
+        PaymentMethos.jsx
+        ReviewAndDelivery.jsx
+      Checkout.jsx
+    course
+      Course.jsx
+    coursePageDetails
+      CoursePageDetails.jsx
+    Dashboard
+      dashboard.css
+      Dashboard.jsx
+    home
+      components
+        DateWisePujaList
+        LineCourseList
+        PujaSamagriList
+        pujaTypeList
+        PujaSamagriList.jsx
+        PujaTypeCard.jsx
+        PujaTypeDetails.jsx
+      Home.css
+      Home.jsx
+    learnPage
+      component
+        LearnSide.jsx
+      LearnPage.jsx
+    notFound
+      NotFound.jsx
+    panditView
+    component
+      PanditViewaa.jsx
+      SideDrawer.jsx
+    PanditView.jsx
+    pujaDetails
+      PujaDetails.jsx
+    Pujaoffering
+      PujaOffering.jsx
+    pujaType
+      PujaType.jsx
+    searchPandit
+      component
+        AllPanditContainer.jsx
+        CardPandit.jsx
+      SearchPandit.jsx
+    selectVendor
+      component
+        selectVendorCard
+          PriceDetailsDialog.jsx
+          SelectVendorCard.jsx
+        selectVendorSidebar
+          vendorSidebarItem
+            VendorSidebarItem.jsx
+          SelectVendorSidebar.jsx
+      SelectVendor.jsx
+    vendoepages
+    aboutUs
+      AboutUs.jsx
+    cartPage
+      component
+        AddExtraSamagriSideDialog.jsx
+        CartEditSamagriListDialog.jsx
+        CartVendorSection.jsx
+      CartPage.jsx
+    checkout
+      components
+        Address.jsx
+        AddressEdit.jsx
+        CheckOutAccordion.jsx
+        Offer.jsx
+        PaymentMethos.jsx
+        ReviewAndDelivery.jsx
+      Checkout.jsx
+    course
+      Course.jsx
+    coursePageDetails
+      CoursePageDetails.jsx
+    Dashboard
+      dashboard.css
+      Dashboard.jsx
+    home
+      components
+        DateWisePujaList
+        LineCourseList
+        PujaSamagriList
+        pujaTypeList
+        PujaSamagriList.jsx
+        PujaTypeCard.jsx
+        PujaTypeDetails.jsx
+      Home.css
+      Home.jsx
+    learnPage
+      component
+        LearnSide.jsx
+      LearnPage.jsx
+    notFound
+      NotFound.jsx
+    panditView
+    component
+      PanditViewaa.jsx
+      SideDrawer.jsx
+    PanditView.jsx
+    pujaDetails
+      PujaDetails.jsx
+    Pujaoffering
+      PujaOffering.jsx
+    pujaType
+      PujaType.jsx
+    searchPandit
+      component
+        AllPanditContainer.jsx
+        CardPandit.jsx
+      SearchPandit.jsx
+    selectVendor
+      component
+        selectVendorCard
+          PriceDetailsDialog.jsx
+          SelectVendorCard.jsx
+        selectVendorSidebar
+          vendorSidebarItem
+            VendorSidebarItem.jsx
+          SelectVendorSidebar.jsx
+      SelectVendor.jsx
+    vendoe
+  Redux
+  App.css
+  App.js
+  index.js
+  

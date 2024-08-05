@@ -1,0 +1,257 @@
+import { useMemo } from 'react';
+import * as Yup from 'yup';
+
+export const useBaseRegistrationValidationSchema = () => {
+  return useMemo(() => {
+    return Yup.object({
+      userType: Yup.string().required('Required'),
+      mobile: Yup.string()
+        .matches(/^[0-9]{10}$/, 'Must be a valid mobile number')
+        .required('Required'),
+      email: Yup.string().email('Invalid email address').required('Required')
+    });
+  }, []);
+};
+
+export const usePasswordValidationSchema = () => {
+  return useMemo(() => {
+    return Yup.object({
+      password: Yup.string()
+        .min(6, 'Password must be at least 6 characters')
+        .required('Required'),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required('Required')
+    });
+  }, []);
+};
+
+export const useLoginValidationSchema = () => {
+  return useMemo(() => {
+    return Yup.object({
+      email: Yup.string().email('Invalid email address').required('Required'),
+      password: Yup.string().required('Required')
+    });
+  }, []);
+};
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+import { useMemo } from 'react';
+import * as Yup from 'yup';
+import { useBaseRegistrationValidationSchema, usePasswordValidationSchema } from './useValidationSchemas';
+
+export const useCompleteRegistrationValidationSchema = (includePasswordValidation) => {
+  const baseSchema = useBaseRegistrationValidationSchema();
+  const passwordSchema = usePasswordValidationSchema();
+
+  return useMemo(() => {
+    if (includePasswordValidation) {
+      return baseSchema.concat(passwordSchema);
+    }
+    return baseSchema;
+  }, [includePasswordValidation, baseSchema, passwordSchema]);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+import React, { useState } from 'react';
+import {
+  Button,
+  TextField,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Tabs,
+  Tab
+} from '@mui/material';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useCompleteRegistrationValidationSchema, useLoginValidationSchema } from './useValidationSchemas';
+
+const RegistrationFormWithPassword = () => {
+  const [open, setOpen] = useState(false);
+  const [tabIndex, setTabIndex] = useState(0);
+  const registrationValidationSchema = useCompleteRegistrationValidationSchema(true);
+  const loginValidationSchema = useLoginValidationSchema();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleTabChange = (event, newValue) => {
+    setTabIndex(newValue);
+  };
+
+  const handleRegistrationSubmit = (values, { setSubmitting }) => {
+    setTimeout(() => {
+      console.log(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+      handleClose();
+    }, 400);
+  };
+
+  const handleLoginSubmit = (values, { setSubmitting }) => {
+    setTimeout(() => {
+      console.log(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+      handleClose();
+    }, 400);
+  };
+
+  return (
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Open Dialog
+      </Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>
+          <Tabs value={tabIndex} onChange={handleTabChange} centered>
+            <Tab label="Login" />
+            <Tab label="Register" />
+          </Tabs>
+        </DialogTitle>
+        <DialogContent>
+          {tabIndex === 0 && (
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              validationSchema={loginValidationSchema}
+              onSubmit={handleLoginSubmit}
+            >
+              {({ isSubmitting }) => (
+                <Form>
+                  <Field
+                    as={TextField}
+                    margin="dense"
+                    id="loginEmail"
+                    name="email"
+                    label="Email Address"
+                    type="email"
+                    fullWidth
+                    required
+                    helperText={<ErrorMessage name="email" component="div" style={{ color: 'red' }} />}
+                  />
+                  <Field
+                    as={TextField}
+                    margin="dense"
+                    id="loginPassword"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    fullWidth
+                    required
+                    helperText={<ErrorMessage name="password" component="div" style={{ color: 'red' }} />}
+                  />
+                  <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button type="submit" disabled={isSubmitting}>
+                      Login
+                    </Button>
+                  </DialogActions>
+                </Form>
+              )}
+            </Formik>
+          )}
+          {tabIndex === 1 && (
+            <Formik
+              initialValues={{
+                userType: '',
+                mobile: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+              }}
+              validationSchema={registrationValidationSchema}
+              onSubmit={handleRegistrationSubmit}
+            >
+              {({ isSubmitting, handleChange, values }) => (
+                <Form>
+                  <FormControl fullWidth sx={{ mb: 2 }}>
+                    <InputLabel id="userType-label">User Type</InputLabel>
+                    <Select
+                      labelId="userType-label"
+                      id="userType"
+                      name="userType"
+                      value={values.userType}
+                      onChange={handleChange}
+                      label="User Type"
+                    >
+                      <MenuItem value="admin">Admin</MenuItem>
+                      <MenuItem value="user">User</MenuItem>
+                    </Select>
+                    <ErrorMessage name="userType" component="div" style={{ color: 'red' }} />
+                  </FormControl>
+                  <Field
+                    as={TextField}
+                    margin="dense"
+                    id="mobile"
+                    name="mobile"
+                    label="Mobile Number"
+                    type="tel"
+                    fullWidth
+                    required
+                    helperText={<ErrorMessage name="mobile" component="div" style={{ color: 'red' }} />}
+                  />
+                  <Field
+                    as={TextField}
+                    margin="dense"
+                    id="email"
+                    name="email"
+                    label="Email Address"
+                    type="email"
+                    fullWidth
+                    required
+                    helperText={<ErrorMessage name="email" component="div" style={{ color: 'red' }} />}
+                  />
+                  <Field
+                    as={TextField}
+                    margin="dense"
+                    id="password"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    fullWidth
+                    required
+                    helperText={<ErrorMessage name="password" component="div" style={{ color: 'red' }} />}
+                  />
+                  <Field
+                    as={TextField}
+                    margin="dense"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    label="Confirm Password"
+                    type="password"
+                    fullWidth
+                    required
+                    helperText={<ErrorMessage name="confirmPassword" component="div" style={{ color: 'red' }} />}
+                 

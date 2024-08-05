@@ -1,0 +1,59 @@
+.editPopUp {
+  width: 80%;
+  height: 600px;
+  /* height: 500px; */
+  background-color: white;
+  margin: auto;
+  padding: 10px 20px;
+  overflow-y: scroll;
+  position: relative;
+  margin-top: 3rem;
+  border-radius: 15px;
+  border: 2px solid black;
+}
+.imageEdit {
+  width: 180px;
+  border-radius: 50%;
+  /* overflow: hidden; */
+  margin: 1rem auto;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.profileEditCloseBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.profileImgViewContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 4.5rem;
+  left: 8rem;
+}
+.profilePicViewer {
+  border: 2px solid black;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: white;
+  z-index: 100;
+}
+.profilePicViewer img {
+  width: 50%;
+  min-height: ;
+  margin-bottom: 2rem;
+  border-radius: 50%;
+}
+.profilePicViewer button {
+  width: 50%;
+}
+.personalContainer {
+  background-color: rgb(107, 121, 138);
+  padding: 2rem;
+}

@@ -1,0 +1,57 @@
+.registerContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.783);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.registerForm {
+  width: 35%;
+  /* background-color: #eee; */
+  padding: 3rem;
+  border-radius: 20px;
+  position: relative;
+}
+/* 300-730 */
+.closeBtn {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  cursor: pointer;
+}
+.passwordInput {
+  position: relative;
+}
+.dropdownContainer {
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+.custom-toast {
+  background-color: #333;
+  color: #fff;
+}
+.fullNameContainer {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0;
+}
+.btnActive {
+  background-color: red;
+}
+.errorText,
+text-muted {
+  color: red;
+}

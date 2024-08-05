@@ -1,0 +1,14 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const personalInfoEditSlice = createSlice({
+  name: "personalInfoEditSlice",
+  initialState: {},
+  reducers: {
+    samagriAction: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
+export const { personalInfoEditAction } = personalInfoEditSlice.actions;
+export default personalInfoEditSlice.reducer;

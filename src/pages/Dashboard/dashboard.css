@@ -1,0 +1,28 @@
+/* .dashboardContainer {
+  background: url("../../../public/img/12.jpg");
+   width: 100vw; 
+  height: 100%;
+  background-size: cover;
+  position: relative;
+}
+.headerComponent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.userText {
+  background-color: rgba(37, 34, 37, 0.75);
+  width: 40%;
+  padding: 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.profileEditContainer {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(221, 232, 232, 0.262);
+  position: absolute;
+  top: 0;
+} */
